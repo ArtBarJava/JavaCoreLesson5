@@ -26,10 +26,11 @@ public class Backup {
         File[] filesToBackup = sourceDir.listFiles();
 
         // Копируем каждый файл в папку с резервными копиями
-        for (File file : filesToBackup) {
-            if (file.isFile()) {
-                Files.copy(file.toPath(), new File(backupDir.getPath() + "/" + file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
-            }
+        if (filesToBackup != null) {
+            for (File file : filesToBackup)
+                if (file.isFile()) {
+                    Files.copy(file.toPath(), new File(backupDir.getPath() + "/" + file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
         }
     }
 }
